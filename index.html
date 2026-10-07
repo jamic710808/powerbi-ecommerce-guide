@@ -276,7 +276,12 @@ footer{padding:50px 0 70px;color:var(--mut);font-size:14px}
 
 <!-- RUN -->
 <section id="run">
- <h2><small>10</small>自己動手：3 步打開它</h2>
+ <h2><small>10</small>自己動手：先線上看，再 3 步打開它</h2>
+ <div class="card" style="padding:18px 22px;margin:0 0 18px"><b style="font-size:18px">🌐 線上路徑（不用安裝任何東西）</b>
+  <p class="hint" style="margin:6px 0 10px">Power BI 公開發佈版，直接在瀏覽器操作篩選器、切頁。</p>
+  <div class="cmd"><pre id="c0" style="word-break:break-all;white-space:pre-wrap">https://app.powerbi.com/view?r=eyJrIjoiMjA0ZTIyNjMtNDE4YS00ZTkyLWEzZjktY2JjOWFiZmQ5ZGFjIiwidCI6IjE2ZGVlZGU4LTc5ZTktNGUzMy05OWU2LTlkOGQzOTQyZDc5NiIsImMiOjEwfQ%3D%3D</pre><button class="btn" data-copy="c0">複製網址</button></div>
+  <a class="btn pri" href="https://app.powerbi.com/view?r=eyJrIjoiMjA0ZTIyNjMtNDE4YS00ZTkyLWEzZjktY2JjOWFiZmQ5ZGFjIiwidCI6IjE2ZGVlZGU4LTc5ZTktNGUzMy05OWU2LTlkOGQzOTQyZDc5NiIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener noreferrer" style="text-decoration:none">開啟線上報告 ↗</a></div>
+ <p class="lead" style="margin-bottom:10px">想拆開研究，再用下面 3 步開本機檔：</p>
  <ol style="margin:0 0 14px 22px;font-size:18px;line-height:2">
   <li>用 Power BI Desktop 開啟 <code>.pbip</code> 檔（需開啟「Power BI 專案」預覽功能）。</li>
   <li>到「轉換資料 → 參數」把 <code>資料原始檔夾</code> 改成你的 data_tw 路徑。</li>
@@ -306,7 +311,7 @@ const lb=$('#lb');function openLb(src){$('img',lb).src=src;lb.classList.add('on'
 document.addEventListener('click',e=>{const z=e.target.closest('.zoomable');if(z&&!e.target.closest('.hs')){openLb(z.dataset.full||z.dataset.fullsrc||z.src.replace('_s.jpg','.jpg'));}});
 lb.onclick=()=>lb.classList.remove('on');document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
 /* copy */
-$$('[data-copy]').forEach(b=>b.onclick=async()=>{const t=$('#'+b.dataset.copy).textContent;try{await navigator.clipboard.writeText(t);b.textContent='已複製 ✓'}catch(e){b.textContent='請手動選取'}setTimeout(()=>b.textContent=b.dataset.copy==='c1'?'複製路徑':'複製資料夾路徑',1600)});
+$$('[data-copy]').forEach(b=>b.onclick=async()=>{const t=$('#'+b.dataset.copy).textContent;try{await navigator.clipboard.writeText(t);b.textContent='已複製 ✓'}catch(e){b.textContent='請手動選取'}setTimeout(()=>b.textContent={c0:'複製網址',c1:'複製路徑'}[b.dataset.copy]||'複製資料夾路徑',1600)});
 /* nav highlight */
 const secs=$$('section');const nio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});secs.forEach(s=>nio.observe(s));
 
